@@ -625,7 +625,7 @@ def interval_histogram_with_dissmeasure(chord, chord_id):
 
     histogram = [0] * 11  # Histograma para intervalos
     dissmeasures = [0] * 11  # Vector para almacenar las disonancias por intervalo
-    vector_test1 = [0] * 11  # Vector para la suma de histograma y disonancias
+    vector_test1 = [0] * 13  # Vector para la suma de histograma y disonancias
 
     # Calcular intervalos y disonancias para pares de notas
     for i in range(len(note_sequence) - 1):
@@ -642,7 +642,11 @@ def interval_histogram_with_dissmeasure(chord, chord_id):
     # Calcula el vector_test1 como la suma de histogram y dissmeasures
     for i in range(len(histogram)):
         vector_test1[i] = dissmeasures[i] #Andres quiere agrear una possicon extra al vector donde este la suma total
+    # Agrega la suma total de las disonancias en la posición 11
+    vector_test1[-2] = sum(dissmeasures)
 
+    # Agrega el promedio de las disonancias en la posición 12
+    vector_test1[-1] = sum(dissmeasures) / len(dissmeasures)
     result = {
         "chord": chord,
         "feature_vector": vector_test1,
