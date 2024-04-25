@@ -4,6 +4,7 @@ import ipywidgets as widgets
 from IPython.display import display
 import numpy as np
 
+from mathchords.constans import PLOT_CONFIG
 
 def classify_chord(intervals):
     """
@@ -65,9 +66,8 @@ def prepare_marker_data(chord_ids, experiment_data, note_names, classify):
  
   
 """
-    dict_from_file={}
-    with open('/content/drive/MyDrive/2023/Trabajo de Grado/config.txt', 'r') as dict_file:
-        dict_from_file = eval(dict_file.read())
+    
+    dict_from_file = PLOT_CONFIG
     colors_dict=dict_from_file['colors']
     symbols_dict=dict_from_file['symbols']
     

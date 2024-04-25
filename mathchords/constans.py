@@ -51,3 +51,19 @@ SCALES = [
 ]
 
 
+PLOT_CONFIG =  {
+    'colors': {
+        'major': 'red',
+        'minor': 'blue',
+        'diminished': 'green',
+        'unknown': 'orange'
+    },
+
+
+  'symbols':{
+        'major': 'star-square',
+        'minor': 'star-triangle-down',
+        'diminished': 'circle',
+        'unknown': 'asterisk'
+    },
+}

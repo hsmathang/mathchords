@@ -5,6 +5,7 @@ TEST_DATA = {"foo": True}
 
 # Handler instantiation
 handler = ExperimentHandler("data/test/")
+print(handler.get_files())
 
 # Handler write/read test
 handler.write(TEST_DATA, "test.pkl")
