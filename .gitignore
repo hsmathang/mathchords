@@ -1,6 +1,12 @@
 # Specific directories
 data/
 
+# Python binaries
+*/__pycache__/
+__pycache__/
+*.pyc
+
+
 # Dot directories
 .*/
 
