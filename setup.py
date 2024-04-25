@@ -6,12 +6,12 @@ from setuptools import setup, find_packages
 setup(
     name="mathchords",
     version="1.0.0",
-    author="Your Name",
-    author_email="your@email.com",
+    author="Santiago Angarita",
+    author_email="hsangaritaga@unal.edu.co",
     description="A package for mathematical operations on musical chords",
 #    long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/mathchords",
+    url="https://github.com/hsmathang/mathchords",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
