@@ -24,3 +24,6 @@ class ExperimentHandler:
     def write(self, data: dict, file_name: str) -> None:
         addr = self.base_addr.joinpath(file_name)
         save(data, addr)
+
+
+        

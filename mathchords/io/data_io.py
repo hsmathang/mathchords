@@ -4,7 +4,7 @@ from pathlib import Path
 
 # Loader functions
 
-def load(data_addr: str | Path) -> dict:
+def load(data_addr: Path) -> dict:
     """
     Chords data loader to store as consts.
 
@@ -17,7 +17,7 @@ def load(data_addr: str | Path) -> dict:
     with open(data_addr, "rb") as data_file:
         return pkl.load(data_file)
 
-def save(data: dict, data_addr: str | Path) -> None:
+def save(data: dict, data_addr: Path) -> None:
     """_summary_
 
     Args:

@@ -88,7 +88,7 @@ def intervals_extractor(chord):
     # Devuelve la matriz de intervalos completada.
     return chormatrix
 
-def pitch_classes_extractor(chord,chord_id, repeat=False):
+def pitch_classes_extractor(chord: dict,chord_id: int, repeat: bool =False) -> dict:
     """
     Extrae las clases de tono de un acorde.
 
@@ -472,7 +472,7 @@ def process(chords, experiment_data, func, path):
     return experiment_data
 
 
-def characteristics_1(chord: dict, chord_id: int, repeat: bool = False):
+def characteristics_1(chord: dict, chord_id: int, repeat: bool = False) -> None:
     """
     Extrae las clases de tono de un acorde.
 
@@ -504,6 +504,7 @@ def characteristics_1(chord: dict, chord_id: int, repeat: bool = False):
         "feature_vector": feature_vector,
         "chord_id": chord_id
     }
+    return 
 
 
 def inversion_to_frequencies(chord):
