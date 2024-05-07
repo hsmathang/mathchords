@@ -67,3 +67,18 @@ PLOT_CONFIG =  {
         'unknown': 'asterisk'
     },
 }
+acordes_de_c = [
+    {"name": "C Major", "intervals": [0, 4, 7]},
+    {"name": "C Minor", "intervals": [0, 3, 7]},
+    {"name": "C Sus2", "intervals": [0, 2, 7]},
+    {"name": "C Sus4", "intervals": [0, 5, 7]},
+    {"name": "C Maj7", "intervals": [0, 4, 7, 11]},
+    {"name": "C m7", "intervals": [0, 3, 7, 10]},
+    {"name": "C 7", "intervals": [0, 4, 7, 10]},
+    {"name": "C m7b5", "intervals": [0, 3, 6, 10]},
+    {"name": "C mM7", "intervals": [0, 3, 7, 11]},
+    {"name": "C 7#5", "intervals": [0, 4, 8, 10]},
+    {"name": "C Aug", "intervals": [0, 4, 8]},
+    {"name": "C Dim", "intervals": [0, 3, 6]},
+    {"name": "C m7b5", "intervals": [0, 3, 6, 10]}
+]
