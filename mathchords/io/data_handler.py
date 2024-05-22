@@ -3,6 +3,14 @@ from pathlib import Path
 from .data_io import load, save
 
 # Loader classes
+class Experiment:
+    def __init__(self, addr: str) -> None:
+        self.addr = addr
+        self.name = addr.split("/")[-1].split(".")[0]
+        self.data = load(addr)
+    
+    def update(self, data):
+        save(data, self.addr)
 
 class ExperimentHandler:
     def __init__(self, base_addr) -> None:

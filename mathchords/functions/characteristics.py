@@ -1,8 +1,10 @@
+from typing import Callable
 import numpy as np
 import os
 import pickle
 
 import math
+from mathchords.io import Experiment
 
 def polar_pitch_classes(chord, chord_id):
     # Inicializar el vector de características con 0s
@@ -444,8 +446,9 @@ def only_six_intervals(chord, chord_id):
     return result
 
 
-def process(chords, experiment_data, func, path):
+def process(data: dict, func: Callable):
     results = {}
+    chords = data["chords"]
     for i, chord in enumerate(chords):
         chord_id = f"chord_{i}"  # Generar un identificador único para el acorde
         result = func(chord, chord_id)  # Llamamos a func en lugar de Experiment_pcset directamente
@@ -454,23 +457,10 @@ def process(chords, experiment_data, func, path):
         results[chord_id] = result
 
     # Actualizar el diccionario experiment_data con los resultados
-    experiment_data['results'] = results
+    new_data = data.copy()
+    new_data['results'] = results
 
-    # Definir la ruta del directorio y el archivo para guardar los datos
-    directory_path = path
-    experiment_data_file = os.path.join(directory_path, 'experiment_data_'+func.__name__+'.pkl')
-    results_file = os.path.join(directory_path, 'results_'+func.__name__+'.pkl')
-
-    # Guardar el diccionario completo en un archivo pickle
-    with open(experiment_data_file, 'wb') as f:
-        pickle.dump(experiment_data, f)
-
-    # Guardar solo los resultados en un archivo pickle
-    with open(results_file, 'wb') as f:
-        pickle.dump(results, f)
-
-    return experiment_data
-
+    return new_data
 
 def characteristics_1(chord: dict, chord_id: int, repeat: bool = False):
     """
