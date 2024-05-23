@@ -2,7 +2,9 @@ from typing import Callable
 import numpy as np
 import os
 import pickle
-
+from sklearn.manifold import MDS
+from scipy.spatial.distance import pdist, squareform
+from sklearn.metrics import pairwise_distances
 import math
 from mathchords.io import Experiment
 
@@ -461,6 +463,72 @@ def process(data: dict, func: Callable):
     new_data['results'] = results
 
     return new_data
+#quiza esta funcion que esta abajo este mal ubicada en este modulo xd
+def perform_mds2(data, metric='euclidean', n_components=2, p=2):
+    """
+    Realiza la reducción de dimensionalidad utilizando MDS, calculando la matriz de disimilitud
+    basada en la métrica especificada.
+
+    Parámetros:
+    - data (np.array): Conjunto de datos. vectores de caracterisitcas
+    - metric (str): La métrica de disimilitud a utilizar.
+    - n_components (int): El número de dimensiones en el espacio de destino.
+    - p (int): El parámetro de la métrica Minkowski para `pdist`.
+
+    Retorna:
+    - np.array: Las coordenadas en el espacio de destino.
+    - np.array: La matriz de disimilitud utilizada.
+    """
+    data = np.array(data)
+    try:
+        # Calcular la matriz de disimilitud basada en la métrica especificada
+        if metric in ['euclidean', 'cityblock', 'cosine', 'chebyshev', 'jaccard', 'hamming']:
+            if metric in ['jaccard', 'hamming']:
+                # Para Jaccard y Hamming, usamos sklearn
+                dissimilarity_matrix = pairwise_distances(data, metric=metric)
+            else:
+                # Para el resto de las métricas, usamos scipy
+                dissimilarity_matrix = squareform(pdist(data, metric=metric))
+        elif metric == 'mahalanobis':
+            # Para Mahalanobis, necesitamos calcular la matriz de inversión de covarianza
+            # Añadimos una pequeña regularización para asegurar la inversión
+            cov_inv = np.linalg.pinv(np.cov(data.T) + np.eye(data.shape[1]) * 15)
+            dissimilarity_matrix = squareform(pdist(data, metric=lambda u, v: mahalanobis(u, v, cov_inv)))
+        else:
+            raise ValueError("Métrica no soportada.")
+    except Exception as e:
+        raise ValueError(f"Error al calcular la matriz de disimilitud: {e}")
+
+    # Realizar MDS
+    mds = MDS(n_components=n_components, dissimilarity='precomputed', max_iter=30000, eps=1e-16)
+    val = mds.fit_transform(dissimilarity_matrix)
+    print(f"Número de iteraciones: {mds.n_iter_}, Stress: {mds.stress_}")
+    return val, dissimilarity_matrix
+
+# quiza esta otra tambien xd
+
+from typing import List, Dict
+
+def create_experiment_dict(chords: List, experiment_name: str = "Experimento Musical") -> Dict:
+    """
+    Crea un diccionario con los datos de un experimento musical, incluyendo metadatos adicionales para una mejor documentación.
+
+    Parámetros:
+    - chords: Lista de diccionarios, donde cada diccionario representa un acorde.
+    - experiment_name: Nombre personalizado para el experimento.
+
+    Retorna:
+    - Diccionario con los datos del experimento, incluyendo metadatos para documentación.
+    """
+    experiment_dict = {
+        'experiment_name': [],
+        'experiment_params': {
+            # Se pueden agregar más parámetros aquí si es necesario
+        },
+        'chords': chords
+    }
+    
+    return experiment_dict
 
 def characteristics_1(chord: dict, chord_id: int, repeat: bool = False) -> None:
     """

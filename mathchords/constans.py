@@ -47,7 +47,8 @@ SCALES = [
     {"name": "Escala Locria", "root": 0, "intervals": [0, 1, 3, 5, 6, 8, 10]},
     
     # Escala Alterada: Derivada del modo locrio, se utiliza para improvisación sobre acordes dominantes alterados.
-    {"name": "Escala Alterada", "root": 0, "intervals": [0, 1, 3, 4, 6, 8, 10, 11]}
+    {"name": "Escala Alterada", "root": 0, "intervals": [0, 1, 3, 4, 6, 8, 10, 11]},
+    {"name": "Escala Cromática", "root": 0, "intervals": list(range(12))}
 ]
 
 
@@ -67,18 +68,19 @@ PLOT_CONFIG =  {
         'unknown': 'asterisk'
     },
 }
-acordes_de_c = [
-    {"name": "C Major", "intervals": [0, 4, 7]},
-    {"name": "C Minor", "intervals": [0, 3, 7]},
-    {"name": "C Sus2", "intervals": [0, 2, 7]},
-    {"name": "C Sus4", "intervals": [0, 5, 7]},
-    {"name": "C Maj7", "intervals": [0, 4, 7, 11]},
-    {"name": "C m7", "intervals": [0, 3, 7, 10]},
-    {"name": "C 7", "intervals": [0, 4, 7, 10]},
-    {"name": "C m7b5", "intervals": [0, 3, 6, 10]},
-    {"name": "C mM7", "intervals": [0, 3, 7, 11]},
-    {"name": "C 7#5", "intervals": [0, 4, 8, 10]},
-    {"name": "C Aug", "intervals": [0, 4, 8]},
-    {"name": "C Dim", "intervals": [0, 3, 6]},
-    {"name": "C m7b5", "intervals": [0, 3, 6, 10]}
+DO_chords = [
+    {'name': 'C Major', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 3]},
+    {'name': 'C Minor', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 4]},
+    {'name': 'C Sus2', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [2, 5]},
+    {'name': 'C Sus4', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [5, 2]},
+    {'name': 'C Aug', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 4]},
+    {'name': 'C Dim', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 3]},
+    {'name': 'C Maj7', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 3, 4]},
+    {'name': 'C m7', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 4, 3]},
+    {'name': 'C 7', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 3, 3]},
+    {'name': 'C m7b5', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 3, 4]},
+    {'name': 'C mM7', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 4, 4]},
+    {'name': 'C 7#5', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 4, 2]},
+    {'name': 'C Dim7', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 3, 3]}
 ]
+

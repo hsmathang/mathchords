@@ -38,18 +38,65 @@ def get_chord_name(note_names, chord_data):
     """
     root_note = note_names[chord_data['root'] % 12]
     bass_note = note_names[chord_data['bass'] % 12]
-    name=f"{root_note}"
-    intervals=chord_data['intervals']
-    if intervals[0]==3:
-      if intervals[1]==3:
-        name=name + "°"
-      else: 
-        name=name + "m"
+    name = f"{root_note}"
+    intervals = chord_data['intervals']
+    
+    # Diccionario de intervalos a nombres de acordes
+    chord_types = {
+    (4, 3): "Major",
+    (3, 4): "Minor",
+    (2, 5): "Sus2",
+    (5, 2): "Sus4",
+    (4, 4): "Aug",
+    (3, 3): "dim",
+    (4, 3, 4): "Maj7",
+    (3, 4, 3): "m7",
+    (4, 3, 3): "7",
+    (3, 3, 4): "m7b5",
+    (3, 4, 4): "mM7",
+    (4, 4, 2): "7#5",
+    (3, 3, 3): "dim7"
+}
 
-
-    if bass_note!=root_note:
-      name=name + f"/{bass_note}"
+    
+    # Identificar el tipo de acorde
+    chord_type = chord_types.get(tuple(intervals), "")
+    if chord_type:
+        if chord_type == "Major":
+            name = name  # Acordes mayores no necesitan sufijo
+        elif chord_type == "Minor":
+            name = name + "m"
+        elif chord_type == "Sus2":
+            name = name + "Sus2"
+        elif chord_type == "Sus4":
+            name = name + "Sus4"
+        elif chord_type == "Maj7":
+            name = name + "Maj7"
+        elif chord_type == "m7":
+            name = name + "m7"
+        elif chord_type == "7":
+            name = name + "7"
+        elif chord_type == "m7b5":
+            name = name + "m7b5"
+        elif chord_type == "mM7":
+            name = name + "mM7"
+        elif chord_type == "7#5":
+            name = name + "7#5"
+        elif chord_type == "Aug":
+            name = name + "Aug"
+        elif chord_type == "dim":
+            name = name + "dim"
+        elif chord_type == "dim7":
+            name = name + "dim7"
+        else:
+            name = name + "Unknown"
+    
+    # Añadir la información del bajo si es diferente de la raíz
+    if bass_note != root_note:
+        name = name + f"/{bass_note}"
+    
     return name
+
 
 def prepare_marker_data(chord_ids, experiment_data, note_names, classify):
     """
