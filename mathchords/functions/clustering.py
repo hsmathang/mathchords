@@ -80,7 +80,7 @@ def prepare_marker_data(chord_ids, experiment_data, note_names, classify):
     hover_text = []
     
     for chord_id in chord_ids:
-        chord_info = experiment_data['results'][chord_id]['chord']
+        chord_info = experiment_data[chord_id]['chord']
         hover_text.append(generate_hover_text(chord_info, note_names))
         if classify:
             chord_type = classify_chord(chord_info.get('intervals', []))
@@ -263,7 +263,7 @@ def plot_chords_with_selection(vector_encoding_MDS,matrix, chord_ids, experiment
         chord_ids, experiment_data, note_names, classify
     )
     text_for_display = [
-        get_chord_name(note_names, experiment_data['results'][chord_id]['chord']) if show_root_names else ''
+        get_chord_name(note_names, experiment_data[chord_id]['chord']) if show_root_names else ''
         for chord_id in chord_ids
     ]
    
@@ -282,7 +282,7 @@ def plot_chords_with_selection(vector_encoding_MDS,matrix, chord_ids, experiment
 
 
     chord_selector = widgets.Dropdown(
-        options=[(f"Chord ID: {chord_id}, {get_chord_name(note_names, experiment_data['results'][chord_id]['chord'])}", chord_id) for chord_id in chord_ids],
+        options=[(f"Chord ID: {chord_id}, {get_chord_name(note_names, experiment_data[chord_id]['chord'])}", chord_id) for chord_id in chord_ids],
         description='Chord ID:'
     )
 
@@ -298,7 +298,7 @@ def plot_chords_with_selection(vector_encoding_MDS,matrix, chord_ids, experiment
   
 
     names_matrix= [
-                    get_chord_name(note_names, experiment_data['results'][chord_id]['chord']) if show_root_names else ''
+                    get_chord_name(note_names, experiment_data[chord_id]['chord']) if show_root_names else ''
                       for chord_id in chord_ids
                     ]
     print(names_matrix)
