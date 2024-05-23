@@ -49,6 +49,7 @@ def get_chord_name(note_names, chord_data):
     (5, 2): "Sus4",
     (4, 4): "Aug",
     (3, 3): "dim",
+    (4, 2):  "b5",
     (4, 3, 4): "Maj7",
     (3, 4, 3): "m7",
     (4, 3, 3): "7",
@@ -86,6 +87,8 @@ def get_chord_name(note_names, chord_data):
             name = name + "Aug"
         elif chord_type == "dim":
             name = name + "dim"
+        elif chord_type == "b5":
+            name = name + "b5"    
         elif chord_type == "dim7":
             name = name + "dim7"
         else:
@@ -348,6 +351,7 @@ def plot_chords_with_selection(vector_encoding_MDS,matrix, chord_ids, experiment
                     get_chord_name(note_names, experiment_data[chord_id]['chord']) if show_root_names else ''
                       for chord_id in chord_ids
                     ]
+
     print(names_matrix)
 
     fig2 = px.imshow(matrix,

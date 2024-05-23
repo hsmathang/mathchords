@@ -637,10 +637,11 @@ def interval_histogram_with_dissmeasure(chord, chord_id):
                 # Calcula la disonancia para el par de notas
                 dissonance = dissmeasure_fixed_amp([frequencies[i], frequencies[j]], fixed_amp)
                 dissmeasures[interval - 1] += dissonance
+                print(frequencies[i],frequencies[j],dissonance)
 
     # Calcula el vector_test1 como la suma de histogram y dissmeasures
     for i in range(len(histogram)):
-        vector_test1[i] = histogram[i] * dissmeasures[i]
+        vector_test1[i] = dissmeasures[i] #Andres quiere agrear una possicon extra al vector donde este la suma total
 
     result = {
         "chord": chord,

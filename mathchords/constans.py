@@ -68,6 +68,14 @@ PLOT_CONFIG =  {
         'unknown': 'asterisk'
     },
 }
+
+DO_basic_chords = [
+    {'name': 'C Major', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 3]},
+    {'name': 'C Minor', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 4]},
+    {'name': 'C Dim', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 3]}
+   
+]
+
 DO_chords = [
     {'name': 'C Major', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 3]},
     {'name': 'C Minor', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 4]},
@@ -75,6 +83,7 @@ DO_chords = [
     {'name': 'C Sus4', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [5, 2]},
     {'name': 'C Aug', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 4]},
     {'name': 'C Dim', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 3]},
+    {'name': 'C b5', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 2]},
     {'name': 'C Maj7', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 3, 4]},
     {'name': 'C m7', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [3, 4, 3]},
     {'name': 'C 7', 'octave': 4, 'bass': 0, 'root': 0, 'degree': 1, 'intervals': [4, 3, 3]},
