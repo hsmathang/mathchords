@@ -615,6 +615,10 @@ def dissmeasure_fixed_amp(fvec, fixed_amp=1, model='min'):
 
     return D
 
+def weight_function(position, total_positions):
+    mu = (total_positions - 1) / 2  # Centro del acorde
+    weight = 1 / (abs(position - mu) + 1)
+    return weight
 
 
 def interval_histogram_with_dissmeasure(chord, chord_id):
@@ -654,4 +658,45 @@ def interval_histogram_with_dissmeasure(chord, chord_id):
     }
 
     return result
+def interval_histogram_with_dissmeasure_weighted(chord, chord_id):
+    fixed_amp = 1
+    note_sequence = inversion_from_bass(chord)
+    frequencies = inversion_to_frequencies(chord)  # Obtener frecuencias
+
+    histogram = [0] * 11  # Histograma para intervalos
+    dissmeasures = [0] * 11  # Vector para almacenar las disonancias por intervalo
+    vector_test1 = [0] * 13  # Vector para la suma de histograma y disonancias
+
+    total_notes = len(note_sequence)
+
+    # Calcular intervalos y disonancias para pares de notas
+    for i in range(total_notes - 1):
+        for j in range(i + 1, total_notes):
+            interval = (note_sequence[j] - note_sequence[i]) % 12
+            if interval > 0:  # Solo intervalos positivos
+                # Calcular el peso basado en las posiciones de las notas
+                weight = weight_function(i, total_notes) * weight_function(j, total_notes)
+                histogram[interval - 1] += 1
+
+                # Calcular disonancia y aplicar peso
+                dissonance = dissmeasure_fixed_amp([frequencies[i], frequencies[j]], fixed_amp)
+                dissmeasures[interval - 1] += dissonance * weight
+
+    # Calcula el vector_test1 como la suma de histogram y dissmeasures
+    for i in range(len(histogram)):
+        vector_test1[i] = dissmeasures[i]
+    # Agrega la suma total de las disonancias en la posición 11
+    vector_test1[-2] = sum(dissmeasures)
+
+    # Agrega el promedio de las disonancias en la posición 12
+    vector_test1[-1] = sum(dissmeasures) / len(dissmeasures)
+    
+    result = {
+        "chord": chord,
+        "feature_vector": vector_test1,
+        "chord_id": chord_id
+    }
+
+    return result
+
 
